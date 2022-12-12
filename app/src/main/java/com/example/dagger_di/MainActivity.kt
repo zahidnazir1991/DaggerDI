@@ -2,15 +2,22 @@ package com.example.dagger_di
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+    @Inject
+  lateinit var  userRegisterationService : UserRegisterationService
+  @Inject
+  lateinit var emailService: EmailService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val UserComponent = DaggerUserRegisterationComponent.builder().build()
-        val userRegisterationService = UserComponent.getUserRegistration()
-        val getEmailSerive = UserComponent.getEmailService()
+        val userComponent = DaggerUserRegisterationComponent.builder().build()
+        userComponent.inject(this)
         userRegisterationService.userRegister("zahid@gmail.com","zahid")
-        getEmailSerive.send("this is new message to send")
+        emailService.send("Send message by zahid")
+
+
     }
 }

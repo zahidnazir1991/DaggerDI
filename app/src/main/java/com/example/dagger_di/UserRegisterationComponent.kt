@@ -1,9 +1,10 @@
 package com.example.dagger_di
 
 import dagger.Component
+import dagger.Module
 
-@Component
+//@Component(modules = [NotificationServiceModule::class,UserRepositoryModule::class])
+@Component(modules = [NotificationServiceModule::class,UserRepositoryWithBind::class])
 interface UserRegisterationComponent {
- fun getUserRegistration() : UserRegisterationService
- fun getEmailService() : EmailService
+fun inject(mainActivity: MainActivity)
 }
