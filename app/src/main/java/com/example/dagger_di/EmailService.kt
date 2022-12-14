@@ -15,7 +15,7 @@ class EmailService @Inject constructor() :UserNotificationService {
     }
 }
 
-class SMSService @Inject constructor() :UserNotificationService {
+class SMSService  : UserNotificationService {
     override fun send(message : String){
         Log.d(Tag,message)
 

@@ -4,9 +4,9 @@ import android.util.Log
 import javax.inject.Inject
 
 const val Tag : String = "MyDagger"
-class UserRegisterationService @Inject constructor(val userRepository: UserRepository, val emailService: EmailService) {
+class UserRegisterationService @Inject constructor(val userRepository: UserRepository, @SMSQuilifier val usernotification: UserNotificationService) {
     fun userRegister(email : String, name : String){
             userRepository.saveUser(name,email)
-            emailService.send("Email sent")
+        usernotification.send("Email sent")
     }
 }
